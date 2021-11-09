@@ -20,4 +20,4 @@ Dominant mod and subordinate mod files can be compressed or extracted bas.jsondb
 
 **Caution**
 
-Results of merging mods may lead to unpredicatable gameplay and/r instability.
+Results of merging mods may lead to unpredicatable gameplay and/or instability.
