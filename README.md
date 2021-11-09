@@ -10,11 +10,11 @@ This utility will merge two bas.jsondb mod files for usage with Blade & Sorcery:
 
 ###### PowerShell
 
-PS C:\>.\bas-mod-merge.exe ".\bas.jsondb" ".\modone.zip" ".\modtwo.zip"
+`PS C:\>.\bas-mod-merge.exe ".\bas.jsondb" ".\modone.zip" ".\modtwo.zip"`
 
 ###### Command Prompt
 
-C:\>bas-mod-merge.exe ".\bas.jsondb" ".\modone.zip" ".\modtwo.zip"
+`C:\>bas-mod-merge.exe ".\bas.jsondb" ".\modone.zip" ".\modtwo.zip"`
 
 **How It Works**
 
