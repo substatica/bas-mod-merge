@@ -28,6 +28,10 @@ The resulting merged bas.jsondb will be written in an output directory named **m
 
 Dominant mod and subordinate mod files can be compressed or extracted bas.jsondb files.
 
+**Limitations**
+
+This utility does not account for deleted/added files or any mods other than those affecting solely bas.jsondb.
+
 **Caution**
 
 Results of merging mods may lead to unpredicatable gameplay and/or instability.
