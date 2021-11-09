@@ -78,6 +78,8 @@ namespace bas_mod_merge
             ZipFile.CreateFromDirectory(mer_dir, Path.Combine(output_dir, "bas.jsondb"));
 
             Cleanup();
+
+            Console.WriteLine("Merge complete.");
         }
 
         static void CompareFiles(string directory) {
@@ -122,20 +124,29 @@ namespace bas_mod_merge
 
         static void ResetDirectories()
         {
-            if (!Directory.Exists(output_dir))
+            try
             {
-                Directory.CreateDirectory(output_dir);
+                if (!Directory.Exists(output_dir))
+                {
+                    Directory.CreateDirectory(output_dir);
+                }
+                DelTree(temp);
+                Directory.CreateDirectory(temp);
+                Directory.CreateDirectory(ref_dir);
+                Directory.CreateDirectory(dom_dir);
+                Directory.CreateDirectory(sub_dir);
+                Directory.CreateDirectory(mer_dir);
+                Directory.CreateDirectory(ref_jsondb_dir);
+                Directory.CreateDirectory(dom_jsondb_dir);
+                Directory.CreateDirectory(sub_jsondb_dir);
             }
-            DelTree(temp);
-            Directory.CreateDirectory(temp);
-            Directory.CreateDirectory(ref_dir);
-            Directory.CreateDirectory(dom_dir);
-            Directory.CreateDirectory(sub_dir);
-            Directory.CreateDirectory(mer_dir);
-            Directory.CreateDirectory(ref_jsondb_dir);
-            Directory.CreateDirectory(dom_jsondb_dir);
-            Directory.CreateDirectory(sub_jsondb_dir);
-        }
+            catch(Exception ex)
+            {
+                Console.WriteLine("Could not reset temporary directories. Please close all directories.");
+                Console.WriteLine("If you continue to experience this issue manually delete the '"+temp+"' directory.");
+                throw (ex);
+            }
+    }
 
         const int BYTES_TO_READ = sizeof(Int64);
         static bool FilesAreEqual(FileInfo first, FileInfo second)
