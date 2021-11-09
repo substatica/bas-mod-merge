@@ -17,3 +17,7 @@ If both mods contain modifications to the same file, the dominant mod file will 
 The resulting merged bas.jsondb will be written in an output directory named **merge_output**.
 
 Dominant mod and subordinate mod files can be compressed or extracted bas.jsondb files.
+
+**Caution**
+
+Results of merging mods may lead to unpredicatable gameplay and/r instability.
