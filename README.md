@@ -6,6 +6,16 @@ This utility will merge two bas.jsondb mod files for usage with Blade & Sorcery:
 
   `bas-mod-merge.exe [unmodified bas.jsondb] [dominant mod] [subordinate mod]`
   
+**Examples:**
+
+###### PowerShell
+
+PS C:\>.\bas-mod-merge.exe ".\bas.jsondb" ".\modone.zip" ".\modtwo.zip"
+
+###### Command Prompt
+
+C:\>bas-mod-merge.exe ".\bas.jsondb" ".\modone.zip" ".\modtwo.zip"
+
 **How It Works**
 
 This utility compares two modified bas.jsondb files to a reference bas.jsondb file and creates a merged bas.jsondb file.
