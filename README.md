@@ -35,3 +35,14 @@ This utility does not account for deleted/added files or any mods other than tho
 **Caution**
 
 Results of merging mods may lead to unpredicatable gameplay and/or instability.
+
+**FAQ**
+
+**Q: I'm getting an error, what can I do?**  
+A: Ensure that the three commandline parameters, the three required filenames, all are encapsulated in double quotes and are separated by a space as seen in the examples above.
+
+**Q: Why is some mod functionality not working in game?**  
+A: Only one mod can change each file, if mods include the same file only the dominant mod file will be used. Some functionality of the subordinate mod may not be included. In addition, mods may have unexpected gameplay when combined.
+
+**Q: Can I combine more than two mods?**  
+A: Yes. Take the output file from combining two mods and use it as the reference to run bas-mod-merge again. Using the same mod file for both dominant and subordinant will have the effect of combining a single mod with the reference file.
