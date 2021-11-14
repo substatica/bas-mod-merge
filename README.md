@@ -24,7 +24,7 @@ A file is determined to be modified if it differs from the same file contained i
 
 If both mods contain modifications to the same file, the dominant mod file will be used.
 
-The resulting merged bas.jsondb will be written in an output directory named **merge_output**.
+The resulting merged bas.jsondb along with a log file will be written in an output directory named **output**.
 
 Dominant mod and subordinate mod files can be compressed or extracted bas.jsondb files.
 
