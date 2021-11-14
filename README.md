@@ -11,10 +11,12 @@ This utility will merge two bas.jsondb mod files for usage with Blade & Sorcery:
 ###### PowerShell
 
 `PS C:\>.\bas-mod-merge.exe ".\bas.jsondb" ".\modone.zip" ".\modtwo.zip"`
+`PS C:\>.\bas-mod-merge.exe ".\bas.jsondb" ".\modone\bas.jsondb" ".\modtwo\bas.jsondb"`
 
 ###### Command Prompt
 
 `C:\>bas-mod-merge.exe ".\bas.jsondb" ".\modone.zip" ".\modtwo.zip"`
+`C:\>bas-mod-merge.exe ".\bas.jsondb" ".\modone\bas.jsondb" ".\modtwo\bas.jsondb"`
 
 **How It Works**
 
@@ -37,6 +39,9 @@ This utility does not account for deleted/added files or any mods other than tho
 Results of merging mods may lead to unpredicatable gameplay and/or instability.
 
 **FAQ**
+
+**Q: The utility is stopping without error trying to extract an archive, what can I do?**  
+A: The utility is unable to extract the type of archive being provided to it. Try manually extracting both mod files and pointing the utility directly at the modded bas.jsondb files.
 
 **Q: I'm getting an error, what can I do?**  
 A: Ensure that the three commandline parameters, the three required filenames, all are encapsulated in double quotes and are separated by a space as seen in the examples above.
