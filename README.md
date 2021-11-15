@@ -2,6 +2,10 @@
 
 This utility will merge two bas.jsondb mod files for usage with Blade & Sorcery: Nomad.
 
+**Usage Video:**
+
+https://youtu.be/1aVkTCNp76E
+
 **Usage:**
 
   `bas-mod-merge.exe [unmodified bas.jsondb] [dominant mod] [subordinate mod]`
