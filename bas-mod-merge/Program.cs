@@ -59,6 +59,11 @@ namespace bas_mod_merge
                 return;
             }
 
+            log("Ref: " + args[0]);
+            log("Dom: " + args[1]);
+            log("Sub: " + args[2]);
+            log("");
+
             log("Resetting temporary directories");
             ResetDirectories();
 
@@ -104,10 +109,12 @@ namespace bas_mod_merge
 
             Int32 totalConflicts = 0;
 
-            totalConflicts += CompareFiles(ref_dir);
-            foreach(string directory in Directory.GetDirectories(ref_dir))
+            log("Comparing root");
+            totalConflicts += CompareFiles(String.Empty);
+            log("Comparing subdirectories");
+            foreach (string directory in Directory.GetDirectories(ref_dir))
             {
-                totalConflicts += CompareFiles(directory);
+                totalConflicts += CompareFiles(new DirectoryInfo(directory).Name);
             }
 
             if (File.Exists(Path.Combine(output_dir, "bas.jsondb")))
@@ -164,35 +171,35 @@ namespace bas_mod_merge
         }
 
         static int CompareFiles(string directory) {
-            DirectoryInfo dirInfo = new DirectoryInfo(directory);
-            DirectoryInfo merInfo = directory == ref_dir ? new DirectoryInfo(mer_dir) : Directory.CreateDirectory(Path.Combine(mer_dir, dirInfo.Name));
+            DirectoryInfo dirInfo = new DirectoryInfo(Path.Combine(ref_dir,directory));
+            DirectoryInfo merInfo = String.IsNullOrEmpty(directory) ? new DirectoryInfo(mer_dir) : Directory.CreateDirectory(Path.Combine(mer_dir, directory));
 
             Int32 conflictCount = 0;
-            
-            foreach (string file in Directory.GetFiles(directory))
+
+            foreach (string file in Directory.GetFiles(Path.Combine(ref_dir, directory)))
             {
                 FileInfo fileInfo = new FileInfo(file);
                 Boolean subChange = false;
                 Boolean domChange = false;
 
-                if (File.Exists(Path.Combine(sub_dir, dirInfo.Name, fileInfo.Name)))
+                if (File.Exists(Path.Combine(sub_dir, directory, fileInfo.Name)))
                 {
-                    FileInfo subInfo = new FileInfo(Path.Combine(sub_dir, dirInfo.Name, fileInfo.Name));
+                    FileInfo subInfo = new FileInfo(Path.Combine(sub_dir, directory, fileInfo.Name));
                     if (!FilesAreEqual(fileInfo, subInfo))
                     {
                         subChange = true;
-                        log("Subordinate mod - " + subInfo);
+                        log("Subordinate mod - " + directory + "/" + fileInfo.Name);
                         subInfo.CopyTo(Path.Combine(merInfo.FullName, subInfo.Name));
                     }
                 }
 
-                if (File.Exists(Path.Combine(dom_dir, dirInfo.Name, fileInfo.Name)))
+                if (File.Exists(Path.Combine(sub_dir, directory, fileInfo.Name)))
                 {
-                    FileInfo domInfo = new FileInfo(Path.Combine(dom_dir, dirInfo.Name, fileInfo.Name));
+                    FileInfo domInfo = new FileInfo(Path.Combine(sub_dir, directory, fileInfo.Name));
                     if (!FilesAreEqual(fileInfo, domInfo))
                     {
                         domChange = true;
-                        log("Dominant mod - " + domInfo);
+                        log("Dominant mod - " + directory + "/" + fileInfo.Name);
                         domInfo.CopyTo(Path.Combine(merInfo.FullName, domInfo.Name), true);
                     }
                 }
@@ -298,8 +305,15 @@ namespace bas_mod_merge
 
         static void ExtractFile(string source, string destination)
         {
-            ArchiveFile zipFile = new ArchiveFile(source);
-            zipFile.Extract(destination);
+            try
+            {
+                ArchiveFile zipFile = new ArchiveFile(source);
+                zipFile.Extract(destination);
+            }
+            catch(Exception ex) {
+                log("Failed to extract " + source);
+                throw (ex);
+            }
         }
 
         static void DelTree(string dir)
