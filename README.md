@@ -2,6 +2,10 @@
 
 This utility will merge two bas.jsondb mod files for usage with Blade & Sorcery: Nomad.
 
+**Usage Video:**
+
+https://youtu.be/1aVkTCNp76E
+
 **Usage:**
 
   `bas-mod-merge.exe [unmodified bas.jsondb] [dominant mod] [subordinate mod]`
@@ -12,9 +16,13 @@ This utility will merge two bas.jsondb mod files for usage with Blade & Sorcery:
 
 `PS C:\>.\bas-mod-merge.exe ".\bas.jsondb" ".\modone.zip" ".\modtwo.zip"`
 
+`PS C:\>.\bas-mod-merge.exe ".\bas.jsondb" ".\modone\bas.jsondb" ".\modtwo\bas.jsondb"`
+
 ###### Command Prompt
 
 `C:\>bas-mod-merge.exe ".\bas.jsondb" ".\modone.zip" ".\modtwo.zip"`
+
+`C:\>bas-mod-merge.exe ".\bas.jsondb" ".\modone\bas.jsondb" ".\modtwo\bas.jsondb"`
 
 **How It Works**
 
@@ -24,7 +32,7 @@ A file is determined to be modified if it differs from the same file contained i
 
 If both mods contain modifications to the same file, the dominant mod file will be used.
 
-The resulting merged bas.jsondb will be written in an output directory named **merge_output**.
+The resulting merged bas.jsondb along with a log file will be written in an output directory named **output**.
 
 Dominant mod and subordinate mod files can be compressed or extracted bas.jsondb files.
 
@@ -37,6 +45,9 @@ This utility does not account for deleted/added files or any mods other than tho
 Results of merging mods may lead to unpredicatable gameplay and/or instability.
 
 **FAQ**
+
+**Q: The utility is stopping without error trying to extract an archive, what can I do?**  
+A: The utility is unable to extract the type of archive being provided to it. Try manually extracting both mod files and pointing the utility directly at the modded bas.jsondb files.
 
 **Q: I'm getting an error, what can I do?**  
 A: Ensure that the three commandline parameters, the three required filenames, all are encapsulated in double quotes and are separated by a space as seen in the examples above.
